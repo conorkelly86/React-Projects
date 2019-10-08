@@ -12,12 +12,28 @@ class App extends React.Component {
         this.state = {
             isLoggedIn: false,
             message: "",
+            cap: "",
         }
         this.handleClick = this.handleClick.bind(this)
+        this.handleCap = this.handleCap.bind(this)
     }
+/*     handleClick() {
+        this.setState(prevState => {
+            return {
+            message: !prevState.message
+          }));
+           // message: 'This is the story of Odinson',
+    }
+} */
     handleClick() {
-        this.setState({message: 'This is the story of Odinson'})
-    }
+    this.setState({message: !this.state.message})
+}
+    handleCap(){ 
+        this.setState({
+            cap: 'Soldier out of time',
+        })
+    }    
+
     onMouseOver() {
         this.setState({message: 'Is the God of Thunder!'})
 
@@ -25,17 +41,19 @@ class App extends React.Component {
         
         let wordDisplay = (this.state.isLoggedIn === true) ? "in" : "out"
         let text = this.state.message
+        let captext = this.state.cap
         
         return (
             <div>
                 <h1>You are currently logged {wordDisplay}</h1>
             
             <img alt="" onMouseOver={() => {console.log(wordDisplay)}} src="https://static.tvtropes.org/pmwiki/pub/images/mcu_thor.png" onClick={this.handleClick}/>
-            <br />
-            <br />
-            <button onClick={this.handleClick}>Thor</button>
-            <img alt="" src="thor.png" onClick={this.handClick}/>
             <p>{text}</p>
+            <br />
+            <img alt="" onMouseOver={() => {console.log(wordDisplay)}} src="https://images-na.ssl-images-amazon.com/images/I/517nJTS1NiL._SY300_QL70_.jpg" onClick={this.handleCap}/>
+
+            <br />
+            <p>{captext}</p>
             </div>
         )
     }
