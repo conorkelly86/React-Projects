@@ -10,29 +10,32 @@ class App extends React.Component {
     constructor() {
         super()
         this.state = {
-            isLoggedIn: true
+            isLoggedIn: false,
+            message: "",
         }
         this.handleClick = this.handleClick.bind(this)
     }
     handleClick() {
-        console.log("I was clicked")
+        this.setState({message: 'This is the story of Odinson'})
     }
-    render() {
+    onMouseOver() {
+        this.setState({message: 'Is the God of Thunder!'})
+
+      }    render() {
         
-        let wordDisplay
-        if (this.state.isLoggedIn === true) {
-            wordDisplay = "in"
-        } else {
-            wordDisplay = "out"
-        }
+        let wordDisplay = (this.state.isLoggedIn === true) ? "in" : "out"
+        let text = this.state.message
+        
         return (
             <div>
                 <h1>You are currently logged {wordDisplay}</h1>
             
-            <img alt="" onMouseOver={() => alert("Hovered!")} src="https://www.fillmurray.com/200/100"/>
+            <img alt="" onMouseOver={() => {console.log(wordDisplay)}} src="https://static.tvtropes.org/pmwiki/pub/images/mcu_thor.png" onClick={this.handleClick}/>
             <br />
             <br />
-            <button onClick={this.handleClick}>Click me</button>
+            <button onClick={this.handleClick}>Thor</button>
+            <img alt="" src="thor.png" onClick={this.handClick}/>
+            <p>{text}</p>
             </div>
         )
     }
